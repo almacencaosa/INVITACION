@@ -286,6 +286,8 @@
                 </button>
             </div>
 
+            <p id="voteStatus" role="status" aria-live="polite" class="text-sm text-sand-600 mb-4">Cargando votos…</p>
+
             <!-- Vote Results Bar -->
             <div class="bg-sand-100 rounded-2xl p-4 border border-sand-200">
                 <div class="flex justify-between text-xs font-semibold text-sand-700 mb-2">
@@ -438,10 +440,39 @@
         }
 
         // =========================================================================
-        // BASE DE DATOS NATIVA EN NETLIFY (NETLIFY BLOBS & NETLIFY FUNCTIONS)
+        // VOTACIÓN PERSISTENTE EN NETLIFY DATABASE
         // =========================================================================
         let votes = { boy: 0, girl: 0 };
-        let userVoted = localStorage.getItem('userVoted') || null;
+        let userVoted = null;
+        let voterId = null;
+        try {
+            voterId = localStorage.getItem('genderRevealVoterId');
+            if (!voterId) {
+                voterId = crypto.randomUUID();
+                localStorage.setItem('genderRevealVoterId', voterId);
+            }
+            userVoted = localStorage.getItem('genderRevealConfirmedTeam');
+        } catch {
+            voterId = null;
+            // Voting requires a stable identifier to keep retries from duplicating votes.
+        }
+        let votePending = false;
+        let voteRequestVersion = 0;
+        let pollPending = false;
+
+        function setVoteStatus(message) {
+            document.getElementById('voteStatus').textContent = message;
+        }
+
+        async function readVoteResponse(res) {
+            const data = await res.json();
+            if (!res.ok || !data.success || !data.votes ||
+                !Number.isInteger(data.votes.boy) || data.votes.boy < 0 ||
+                !Number.isInteger(data.votes.girl) || data.votes.girl < 0) {
+                throw new Error('No se pudo sincronizar la votación.');
+            }
+            return data;
+        }
         let isNetlifyActive = false;
 
         function updateVoteUI() {
@@ -484,68 +515,64 @@
             }
         }
 
-        // Consultar votos desde la base de datos de Netlify
+        // Display only totals confirmed by the database; keep the last total on errors.
         async function fetchNetlifyVotes() {
+            if (votePending || pollPending) return;
+            pollPending = true;
+            const version = voteRequestVersion;
             try {
-                const res = await fetch('/api/votes');
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data && data.votes) {
-                        votes.boy = parseInt(data.votes.boy, 10) || 0;
-                        votes.girl = parseInt(data.votes.girl, 10) || 0;
-                        isNetlifyActive = true;
-                        updateVoteUI();
-                        return;
-                    }
-                }
-            } catch (err) {
-                // Modo local de respaldo mientras se corre fuera de Netlify
+                const data = await readVoteResponse(await fetch('/api/votes', {
+                    cache: 'no-store', signal: AbortSignal.timeout(15000)
+                }));
+                if (version !== voteRequestVersion) return;
+                votes = data.votes;
+                isNetlifyActive = true;
+                setVoteStatus('Votos sincronizados. ¡Elige tu equipo!');
+            } catch {
+                if (version !== voteRequestVersion) return;
+                isNetlifyActive = false;
+                setVoteStatus('No se pudo actualizar el contador. Reintentando…');
+            } finally {
+                pollPending = false;
+                updateVoteUI();
             }
-            votes = JSON.parse(localStorage.getItem('genderRevealVotes')) || { boy: 0, girl: 0 };
-            updateVoteUI();
         }
 
         fetchNetlifyVotes();
-        // Sincronización automática periódica para ver votos de otros invitados en tiempo real
         setInterval(fetchNetlifyVotes, 4000);
 
         async function castVote(team) {
-            if (userVoted === team) {
-                // Si vuelve a presionar el mismo, solo dispara confeti festivo
-                if (team === 'boy') triggerConfetti(['#8FAEC4', '#B0C8D6', '#D4AF37']);
-                else triggerConfetti(['#E8A5A5', '#F2C2C2', '#D4AF37']);
+            if (votePending || !['boy', 'girl'].includes(team)) return;
+            if (!voterId) {
+                setVoteStatus('Activa el almacenamiento de tu navegador para guardar tu voto y evitar duplicados.');
                 return;
             }
-
-            const previousTeam = userVoted;
-            userVoted = team;
-            localStorage.setItem('userVoted', userVoted);
-
-            // Actualización visual inmediata (Optimistic UI)
-            if (previousTeam && votes[previousTeam] > 0) {
-                votes[previousTeam] = Math.max(0, votes[previousTeam] - 1);
-            }
-            votes[team] = (votes[team] || 0) + 1;
-            updateVoteUI();
-
-            // Guardar voto en la base de datos de Netlify (Netlify Blobs)
+            votePending = true;
+            voteRequestVersion++;
+            const buttons = ['btnVoteBoy', 'btnVoteGirl'].map(id => document.getElementById(id));
+            buttons.forEach(button => { button.disabled = true; });
+            setVoteStatus('Guardando tu voto…');
             try {
-                const res = await fetch('/api/votes', {
+                const data = await readVoteResponse(await fetch('/api/votes', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ team, previousTeam })
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data && data.votes) {
-                        votes.boy = data.votes.boy;
-                        votes.girl = data.votes.girl;
-                        isNetlifyActive = true;
-                        updateVoteUI();
-                    }
-                }
-            } catch (err) {
-                localStorage.setItem('genderRevealVotes', JSON.stringify(votes));
+                    body: JSON.stringify({ team, voterId }),
+                    signal: AbortSignal.timeout(15000)
+                }));
+                votes = data.votes;
+                userVoted = team;
+                isNetlifyActive = true;
+                try { localStorage.setItem('genderRevealConfirmedTeam', team); } catch {}
+                setVoteStatus('¡Tu voto quedó guardado! Puedes cambiar de equipo.');
+                updateVoteUI();
+            } catch {
+                isNetlifyActive = false;
+                setVoteStatus('No pudimos confirmar tu voto. Pulsa tu equipo para reintentar.');
+                updateVoteUI();
+                return;
+            } finally {
+                votePending = false;
+                buttons.forEach(button => { button.disabled = false; });
             }
 
             // Confeti festivo correspondiente al equipo
