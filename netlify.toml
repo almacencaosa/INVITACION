@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Redirección amigable para la API de votos
+[[redirects]]
+  from = "/api/votes"
+  to = "/.netlify/functions/votes"
+  status = 200
+
+# Redirección para el nombre alternativo del archivo
+[[redirects]]
+  from = "/gender_reveal_web_invitation.html"
+  to = "/index.html"
+  status = 301
+

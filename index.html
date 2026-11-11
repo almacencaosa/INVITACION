@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Nuestra Mayor Aventura! | Gender Reveal Karla & Hiram</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: {
+                            50: '#FAF8F5',
+                            100: '#F4EFEA',
+                            200: '#E6DDD5',
+                            300: '#D5C5B5',
+                            400: '#BFA893',
+                            500: '#A48B74',
+                            600: '#8A715C',
+                            700: '#6E5846',
+                            800: '#544234',
+                            900: '#3D2F24',
+                        },
+                        gold: {
+                            300: '#E5C687',
+                            400: '#D4AF37',
+                            500: '#AA7C11',
+                        },
+                        boyBlue: '#8FAEC4',
+                        girlPink: '#E8A5A5',
+                        sage: '#8A9A86',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF8F5;
+            color: #544234;
+        }
+        .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(84, 66, 52, 0.08);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .gold-ring {
+            box-shadow: 0 0 0 4px #F4EFEA, 0 0 0 6px #D4AF37, 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start pb-16 antialiased selection:bg-sand-300 selection:text-sand-900">
+
+    <!-- Main Container -->
+    <div class="w-full max-w-xl mx-auto px-4 pt-6 sm:pt-10">
+
+        <!-- HEADER CARD -->
+        <div class="relative bg-white rounded-3xl overflow-hidden card-shadow border border-sand-200/60 p-8 sm:p-12 text-center mb-8">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-sand-100 rounded-full blur-2xl opacity-70"></div>
+            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-sand-200/50 rounded-full blur-2xl opacity-70"></div>
+
+            <!-- Vector Balloon Illustration -->
+            <div class="relative z-10 mb-6 flex justify-center items-center gap-4">
+                <i class="fas fa-compass text-sand-400 text-xl sm:text-2xl transform -rotate-12"></i>
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-sand-100 flex items-center justify-center text-sand-600 shadow-inner">
+                    <svg class="w-10 h-10 text-sand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2c-3.866 0-7 3.134-7 7 0 3.3 2.25 6.07 5.33 6.84L10 18h4l-.33-2.16C16.75 15.07 19 12.3 19 9c0-3.866-3.134-7-7-7z"/>
+                        <path d="M10 21h4v1h-4z"/>
+                        <path d="M9 9c0-1.657 1.343-3 3-3"/>
+                        <line x1="10" y1="18" x2="10" y2="21"/>
+                        <line x1="14" y1="18" x2="14" y2="21"/>
+                    </svg>
+                </div>
+                <i class="fas fa-leaf text-sage text-xl sm:text-2xl transform rotate-12"></i>
+            </div>
+
+            <!-- Subtitle Badge -->
+            <div class="inline-block px-4 py-1.5 bg-sand-100 rounded-full text-sand-700 text-xs sm:text-sm font-medium tracking-widest uppercase mb-4 border border-sand-200">
+                ¡Gender Reveal Party!
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl text-sand-900 font-normal leading-tight mb-4">
+                ¡Nuestra Mayor Aventura Está Por Comenzar!
+            </h1>
+
+            <p class="text-sand-600 text-sm sm:text-base leading-relaxed mb-6 font-light">
+                Un nuevo viaje empieza y queremos compartir la gran emoción de descubrir juntos si el amor de nuestra vida será <span class="font-semibold text-boyBlue">NIÑO</span> o <span class="font-semibold text-girlPink">NIÑA</span>.
+            </p>
+
+            <!-- PARENTS PORTRAITS SECTION -->
+            <div class="my-8 py-4 border-y border-sand-200/80">
+                <p class="text-xs uppercase tracking-widest text-sand-500 font-medium mb-6">¿A quién se parecerá más?</p>
+                
+                <div class="flex justify-center items-center gap-6 sm:gap-10">
+                    
+                    <!-- Karla (Childhood Photo) -->
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 mb-3">
+                            <img id="photoKarla" 
+                                 src="karlabb.jpeg" 
+                                 alt="Karla Paola de niña" 
+                                 class="w-full h-full object-cover rounded-full gold-ring">
+                            <span class="absolute -bottom-2 bg-girlPink text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                                MAMÁ
+                            </span>
+                        </div>
+                        <span class="font-serif text-sand-800 text-sm font-medium">Karla Paola</span>
+                    </div>
+
+                    <!-- Decorative VS / Heart -->
+                    <div class="flex flex-col items-center text-sand-400">
+                        <span class="font-serif italic text-lg text-gold-500">&amp;</span>
+                        <div class="w-8 h-0.5 bg-sand-200 my-1"></div>
+                    </div>
+
+                    <!-- Hiram (Childhood Photo) -->
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 mb-3">
+                            <img id="photoHiram" 
+                                 src="hirambb.jpeg" 
+                                 alt="Hiram Mendoza de niño" 
+                                 class="w-full h-full object-cover rounded-full gold-ring">
+                            <span class="absolute -bottom-2 bg-boyBlue text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                                PAPÁ
+                            </span>
+                        </div>
+                        <span class="font-serif text-sand-800 text-sm font-medium">Hiram Mendoza</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <h2 class="font-serif text-lg sm:text-xl text-sand-700 font-medium">
+                    Karla Paola Jiménez Magallanes<br>&amp;<br>Hiram Mendoza San Emeterio
+                </h2>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN SECTION -->
+        <div class="bg-white rounded-3xl card-shadow border border-sand-200/60 p-6 sm:p-8 text-center mb-8">
+            <h3 class="font-serif text-xl text-sand-900 mb-4 flex items-center justify-center gap-2">
+                <i class="far fa-clock text-sand-500 text-sm"></i> Faltan para el gran despegue:
+            </h3>
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto" id="countdown">
+                <div class="bg-sand-50 p-3 sm:p-4 rounded-2xl border border-sand-200">
+                    <span id="days" class="block font-serif text-2xl sm:text-3xl font-bold text-sand-800">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sand-500 font-medium">Días</span>
+                </div>
+                <div class="bg-sand-50 p-3 sm:p-4 rounded-2xl border border-sand-200">
+                    <span id="hours" class="block font-serif text-2xl sm:text-3xl font-bold text-sand-800">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sand-500 font-medium">Horas</span>
+                </div>
+                <div class="bg-sand-50 p-3 sm:p-4 rounded-2xl border border-sand-200">
+                    <span id="minutes" class="block font-serif text-2xl sm:text-3xl font-bold text-sand-800">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sand-500 font-medium">Min</span>
+                </div>
+                <div class="bg-sand-50 p-3 sm:p-4 rounded-2xl border border-sand-200">
+                    <span id="seconds" class="block font-serif text-2xl sm:text-3xl font-bold text-sand-800">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sand-500 font-medium">Seg</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVENT DETAILS CARD -->
+        <div class="bg-white rounded-3xl card-shadow border border-sand-200/60 p-8 sm:p-10 mb-8">
+            <h3 class="font-serif text-2xl text-sand-900 text-center mb-6">Detalles del Evento</h3>
+
+            <div class="space-y-6">
+                <!-- Date & Time -->
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sand-100 flex items-center justify-center text-sand-700 shrink-0">
+                        <i class="far fa-calendar-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sand-900 text-base">Fecha y Hora</h4>
+                        <p class="text-sand-600 text-sm">Domingo, 15 de Noviembre de 2026</p>
+                        <p class="text-sand-600 text-sm font-medium">5:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sand-100 flex items-center justify-center text-sand-700 shrink-0">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sand-900 text-base">Lugar</h4>
+                        <p class="text-sand-600 text-sm">Natenco #24, Col. Candelaria, Coyoacán, CDMX</p>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <a href="https://maps.google.com/?q=Natenco+24+Candelaria+Coyoacan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-sand-800 text-white rounded-xl text-xs font-medium hover:bg-sand-900 transition-colors">
+                                <i class="fas fa-location-arrow"></i> Google Maps
+                            </a>
+                            <a href="https://waze.com/ul?q=Natenco+24+Candelaria+Coyoacan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-sand-100 text-sand-800 border border-sand-300 rounded-xl text-xs font-medium hover:bg-sand-200 transition-colors">
+                                <i class="fab fa-waze"></i> Waze
+                            </a>
+                            <button id="copyAddressBtn" onclick="copyAddress()" class="inline-flex items-center gap-2 px-3 py-2 bg-sand-50 text-sand-700 border border-sand-200 rounded-xl text-xs font-medium hover:bg-sand-100 transition-colors">
+                                <i class="far fa-copy"></i> Copiar Dirección
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dress Code -->
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sand-100 flex items-center justify-center text-sand-700 shrink-0">
+                        <i class="fas fa-shirt text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sand-900 text-base">Código de Vestimenta</h4>
+                        <p class="text-sand-600 text-sm">Tonos Neutros (Beige, Arena, Blanco)</p>
+                        <div class="flex gap-2 mt-2">
+                            <span class="w-6 h-6 rounded-full bg-[#F5F5DC] border border-sand-300 shadow-sm" title="Beige"></span>
+                            <span class="w-6 h-6 rounded-full bg-[#E6D5C3] border border-sand-300 shadow-sm" title="Arena"></span>
+                            <span class="w-6 h-6 rounded-full bg-white border border-sand-300 shadow-sm" title="Blanco"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GIFT DYNAMICS CARD -->
+        <div class="bg-gradient-to-br from-sand-100 via-white to-sand-50 rounded-3xl card-shadow border border-sand-200 p-8 sm:p-10 mb-8 text-center relative overflow-hidden">
+            <div class="inline-block p-3 rounded-2xl bg-white shadow-sm border border-sand-200 mb-4">
+                <i class="fas fa-gift text-2xl text-sand-600"></i>
+            </div>
+            <h3 class="font-serif text-2xl text-sand-900 mb-2">Dinámica de Regalo</h3>
+            <p class="text-sand-600 text-sm max-w-md mx-auto mb-6">
+                Tu presencia es nuestro mejor regalo. Según la corazonada que tengas para el gran día, acompáñanos con:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white/90 backdrop-blur p-5 rounded-2xl border border-boyBlue/40 text-left relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-boyBlue/20 flex items-center justify-center text-boyBlue font-bold text-sm">💙</div>
+                        <h4 class="font-semibold text-sand-900 text-base">Team NIÑO (Hiram)</h4>
+                    </div>
+                    <p class="text-xs text-sand-600">Si tu corazonada es niño, trae un <strong class="text-sand-800">paquete de pañales</strong>.</p>
+                </div>
+
+                <div class="bg-white/90 backdrop-blur p-5 rounded-2xl border border-girlPink/40 text-left relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-girlPink/20 flex items-center justify-center text-girlPink font-bold text-sm">💖</div>
+                        <h4 class="font-semibold text-sand-900 text-base">Team NIÑA (Karla)</h4>
+                    </div>
+                    <p class="text-xs text-sand-600">Si tu corazonada es niña, trae un <strong class="text-sand-800">paquete de toallitas húmedas</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE VOTING WITH PHOTOS -->
+        <div class="bg-white rounded-3xl card-shadow border border-sand-200/60 p-8 sm:p-10 mb-8 text-center">
+            <h3 class="font-serif text-2xl text-sand-900 mb-2">¿Votas por Mamá o por Papá?</h3>
+            <p class="text-sand-600 text-sm mb-6">¡Selecciona la foto de tu equipo favorito para dar tu voto!</p>
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <!-- Team Girl Button with Mom's photo preview -->
+                <button onclick="castVote('girl')" id="btnVoteGirl" class="p-4 rounded-2xl border-2 border-girlPink/30 bg-girlPink/5 hover:bg-girlPink/15 text-sand-800 transition-all flex flex-col items-center gap-2 group active:scale-95">
+                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-girlPink shadow-sm">
+                        <img src="karlabb.jpeg" alt="Karla niña" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-semibold text-xs sm:text-sm">Team Niña (Karla)</span>
+                </button>
+
+                <!-- Team Boy Button with Dad's photo preview -->
+                <button onclick="castVote('boy')" id="btnVoteBoy" class="p-4 rounded-2xl border-2 border-boyBlue/30 bg-boyBlue/5 hover:bg-boyBlue/15 text-sand-800 transition-all flex flex-col items-center gap-2 group active:scale-95">
+                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-boyBlue shadow-sm">
+                        <img src="hirambb.jpeg" alt="Hiram niño" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-semibold text-xs sm:text-sm">Team Niño (Hiram)</span>
+                </button>
+            </div>
+
+            <!-- Vote Results Bar -->
+            <div class="bg-sand-100 rounded-2xl p-4 border border-sand-200">
+                <div class="flex justify-between text-xs font-semibold text-sand-700 mb-2">
+                    <span>Niña: <span id="girlPercent">50%</span> (<span id="girlCount">0</span>)</span>
+                    <span>Niño: <span id="boyPercent">50%</span> (<span id="boyCount">0</span>)</span>
+                </div>
+                <div class="w-full bg-sand-200 h-3 rounded-full overflow-hidden flex">
+                    <div id="girlBar" class="bg-girlPink h-full transition-all duration-500" style="width: 50%;"></div>
+                    <div id="boyBar" class="bg-boyBlue h-full transition-all duration-500" style="width: 50%;"></div>
+                </div>
+                <p id="totalVotesText" class="text-[11px] text-sand-500 mt-2 text-center flex items-center justify-center gap-1.5 font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Votos registrados: 0
+                </p>
+            </div>
+        </div>
+
+        <!-- RSVP FORM SECTION -->
+        <div id="rsvpSection" class="bg-white rounded-3xl card-shadow border border-sand-200/60 p-8 sm:p-10 mb-8">
+            <div class="text-center mb-6">
+                <div class="inline-block p-3 rounded-2xl bg-sand-100 text-sand-700 mb-2">
+                    <i class="far fa-envelope-open text-2xl"></i>
+                </div>
+                <h3 class="font-serif text-2xl text-sand-900">Confirmación de Asistencia</h3>
+                <p class="text-sand-600 text-sm mt-1">Favor de confirmar antes del 1 de Noviembre</p>
+            </div>
+
+            <!-- RSVP Form -->
+            <form id="rsvpForm" name="confirmaciones" method="POST" data-netlify="true" onsubmit="handleRSVP(event)" class="space-y-4">
+                <input type="hidden" name="form-name" value="confirmaciones" />
+                <div>
+                    <label for="guestName" class="block text-xs font-semibold text-sand-700 uppercase tracking-wider mb-1">Nombre Completo *</label>
+                    <input type="text" id="guestName" name="nombre" required placeholder="Ej. Ana García" class="w-full px-4 py-3 rounded-xl border border-sand-200 focus:border-sand-500 focus:ring-1 focus:ring-sand-500 outline-none text-sand-800 text-sm bg-sand-50/50">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="guestCount" class="block text-xs font-semibold text-sand-700 uppercase tracking-wider mb-1">Nº de Asistentes *</label>
+                        <select id="guestCount" name="asistentes" required class="w-full px-4 py-3 rounded-xl border border-sand-200 focus:border-sand-500 focus:ring-1 focus:ring-sand-500 outline-none text-sand-800 text-sm bg-sand-50/50">
+                            <option value="1">1 Persona (Solo yo)</option>
+                            <option value="2">2 Personas</option>
+                            <option value="3">3 Personas</option>
+                            <option value="4">4 Personas</option>
+                            <option value="5">5+ Personas</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="teamPrediction" class="block text-xs font-semibold text-sand-700 uppercase tracking-wider mb-1">Tu Predicción *</label>
+                        <select id="teamPrediction" name="prediccion" required class="w-full px-4 py-3 rounded-xl border border-sand-200 focus:border-sand-500 focus:ring-1 focus:ring-sand-500 outline-none text-sand-800 text-sm bg-sand-50/50">
+                            <option value="Team Niña 💖 (Karla)">Team Niña 💖 (Karla)</option>
+                            <option value="Team Niño 💙 (Hiram)">Team Niño 💙 (Hiram)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="guestMessage" class="block text-xs font-semibold text-sand-700 uppercase tracking-wider mb-1">Mensaje para Karla y Hiram (Opcional)</label>
+                    <textarea id="guestMessage" name="mensaje" rows="3" placeholder="¡Escribe un lindo deseo para los futuros papás!" class="w-full px-4 py-3 rounded-xl border border-sand-200 focus:border-sand-500 focus:ring-1 focus:ring-sand-500 outline-none text-sand-800 text-sm bg-sand-50/50 resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-sand-800 hover:bg-sand-900 text-white rounded-xl font-medium text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+                    <i class="fas fa-check-circle"></i> Confirmar Mi Asistencia
+                </button>
+            </form>
+
+            <!-- Success Confirmation Screen -->
+            <div id="rsvpSuccess" class="hidden text-center py-6 space-y-4">
+                <div class="w-16 h-16 bg-sage/20 text-sage rounded-full flex items-center justify-center mx-auto text-3xl">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h4 class="font-serif text-2xl text-sand-900">¡Confirmación Registrada!</h4>
+                <p class="text-sand-600 text-sm max-w-sm mx-auto" id="successSummary">
+                    Gracias por acompañarnos en esta gran aventura.
+                </p>
+                
+                <div class="pt-4 border-t border-sand-200 flex flex-col gap-3">
+                    <button id="whatsappShareBtn" onclick="sendWhatsAppConfirmation()" class="w-full py-3.5 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium text-sm transition-colors flex items-center justify-center gap-2 shadow-md">
+                        <i class="fab fa-whatsapp text-lg"></i> Enviar Confirmación por WhatsApp
+                    </button>
+                    <button onclick="resetRSVPForm()" class="text-xs text-sand-500 underline hover:text-sand-800">
+                        Editar o registrar otra respuesta
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="text-center text-sand-500 text-xs py-6 space-y-2">
+            <p>Con amor, Karla Paola & Hiram Mendoza ✨</p>
+            <p class="text-[10px] text-sand-400">15 de Noviembre, 2026 • Coyoacán, CDMX</p>
+        </div>
+
+    </div>
+
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Fecha objetivo: 15 de Noviembre de 2026, 17:00 hrs CST
+        // Se usa constructor numérico (año, mes 0-indexado [10 = Noviembre], día, hora, min, seg) para 100% compatibilidad en iOS/Safari y Android
+        const eventDate = new Date(2026, 10, 15, 17, 0, 0).getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "<div class='col-span-4 text-center font-serif text-xl text-sand-800'>¡Hoy es el gran día! 🎉</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Efecto de confeti festivo
+        function triggerConfetti(colors) {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 55,
+                    spread: 70,
+                    origin: { y: 0.65 },
+                    colors: colors || ['#8FAEC4', '#E8A5A5', '#D4AF37']
+                });
+            }
+        }
+
+        // Copiar dirección al portapapeles
+        function copyAddress() {
+            const address = "Natenco #24, Col. Candelaria, Coyoacán, CDMX";
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.getElementById('copyAddressBtn');
+                const prevHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check text-sage"></i> ¡Copiada!';
+                setTimeout(() => { btn.innerHTML = prevHtml; }, 2200);
+            }).catch(() => {
+                alert("Dirección: " + address);
+            });
+        }
+
+        // =========================================================================
+        // BASE DE DATOS NATIVA EN NETLIFY (NETLIFY BLOBS & NETLIFY FUNCTIONS)
+        // =========================================================================
+        let votes = { boy: 0, girl: 0 };
+        let userVoted = localStorage.getItem('userVoted') || null;
+        let isNetlifyActive = false;
+
+        function updateVoteUI() {
+            const total = (votes.boy || 0) + (votes.girl || 0);
+            const boyPct = total > 0 ? Math.round((votes.boy / total) * 100) : 50;
+            const girlPct = total > 0 ? Math.round((votes.girl / total) * 100) : 50;
+
+            const boyCountEl = document.getElementById('boyCount');
+            const girlCountEl = document.getElementById('girlCount');
+            const boyPctEl = document.getElementById('boyPercent');
+            const girlPctEl = document.getElementById('girlPercent');
+            const boyBarEl = document.getElementById('boyBar');
+            const girlBarEl = document.getElementById('girlBar');
+            const totalVotesEl = document.getElementById('totalVotesText');
+
+            if (boyCountEl) boyCountEl.innerText = votes.boy;
+            if (girlCountEl) girlCountEl.innerText = votes.girl;
+            if (boyPctEl) boyPctEl.innerText = (total === 0 ? '0%' : boyPct + '%');
+            if (girlPctEl) girlPctEl.innerText = (total === 0 ? '0%' : girlPct + '%');
+            if (boyBarEl) boyBarEl.style.width = (total === 0 ? 50 : boyPct) + '%';
+            if (girlBarEl) girlBarEl.style.width = (total === 0 ? 50 : girlPct) + '%';
+            if (totalVotesEl) {
+                totalVotesEl.innerHTML = `<span class="w-2 h-2 rounded-full ${isNetlifyActive ? 'bg-emerald-500 animate-pulse' : 'bg-sand-400'}"></span> Votos registrados: ${total}`;
+            }
+
+            const btnBoy = document.getElementById('btnVoteBoy');
+            const btnGirl = document.getElementById('btnVoteGirl');
+
+            if (btnBoy && btnGirl) {
+                if (userVoted === 'boy') {
+                    btnBoy.classList.add('ring-2', 'ring-boyBlue', 'bg-boyBlue/20');
+                    btnGirl.classList.remove('ring-2', 'ring-girlPink', 'bg-girlPink/20');
+                } else if (userVoted === 'girl') {
+                    btnGirl.classList.add('ring-2', 'ring-girlPink', 'bg-girlPink/20');
+                    btnBoy.classList.remove('ring-2', 'ring-boyBlue', 'bg-boyBlue/20');
+                } else {
+                    btnBoy.classList.remove('ring-2', 'ring-boyBlue', 'bg-boyBlue/20');
+                    btnGirl.classList.remove('ring-2', 'ring-girlPink', 'bg-girlPink/20');
+                }
+            }
+        }
+
+        // Consultar votos desde la base de datos de Netlify
+        async function fetchNetlifyVotes() {
+            try {
+                const res = await fetch('/api/votes');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.votes) {
+                        votes.boy = parseInt(data.votes.boy, 10) || 0;
+                        votes.girl = parseInt(data.votes.girl, 10) || 0;
+                        isNetlifyActive = true;
+                        updateVoteUI();
+                        return;
+                    }
+                }
+            } catch (err) {
+                // Modo local de respaldo mientras se corre fuera de Netlify
+            }
+            votes = JSON.parse(localStorage.getItem('genderRevealVotes')) || { boy: 0, girl: 0 };
+            updateVoteUI();
+        }
+
+        fetchNetlifyVotes();
+        // Sincronización automática periódica para ver votos de otros invitados en tiempo real
+        setInterval(fetchNetlifyVotes, 4000);
+
+        async function castVote(team) {
+            if (userVoted === team) {
+                // Si vuelve a presionar el mismo, solo dispara confeti festivo
+                if (team === 'boy') triggerConfetti(['#8FAEC4', '#B0C8D6', '#D4AF37']);
+                else triggerConfetti(['#E8A5A5', '#F2C2C2', '#D4AF37']);
+                return;
+            }
+
+            const previousTeam = userVoted;
+            userVoted = team;
+            localStorage.setItem('userVoted', userVoted);
+
+            // Actualización visual inmediata (Optimistic UI)
+            if (previousTeam && votes[previousTeam] > 0) {
+                votes[previousTeam] = Math.max(0, votes[previousTeam] - 1);
+            }
+            votes[team] = (votes[team] || 0) + 1;
+            updateVoteUI();
+
+            // Guardar voto en la base de datos de Netlify (Netlify Blobs)
+            try {
+                const res = await fetch('/api/votes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team, previousTeam })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.votes) {
+                        votes.boy = data.votes.boy;
+                        votes.girl = data.votes.girl;
+                        isNetlifyActive = true;
+                        updateVoteUI();
+                    }
+                }
+            } catch (err) {
+                localStorage.setItem('genderRevealVotes', JSON.stringify(votes));
+            }
+
+            // Confeti festivo correspondiente al equipo
+            if (team === 'boy') {
+                triggerConfetti(['#8FAEC4', '#B0C8D6', '#D4AF37']);
+            } else {
+                triggerConfetti(['#E8A5A5', '#F2C2C2', '#D4AF37']);
+            }
+
+            // Sincronizar automáticamente la predicción en el formulario de confirmación
+            const select = document.getElementById('teamPrediction');
+            if (select) {
+                if (team === 'boy') select.value = "Team Niño 💙 (Hiram)";
+                if (team === 'girl') select.value = "Team Niña 💖 (Karla)";
+            }
+        }
+
+        // =========================================================================
+        // CONFIRMACIÓN DE ASISTENCIA (GUARDADA DIRECTAMENTE EN NETLIFY FORMS)
+        // =========================================================================
+        let lastRSVPData = null;
+
+        async function handleRSVP(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('rsvpForm');
+            const name = document.getElementById('guestName').value.trim();
+            const count = document.getElementById('guestCount').value;
+            const team = document.getElementById('teamPrediction').value;
+            const message = document.getElementById('guestMessage').value.trim();
+
+            lastRSVPData = { name, count, team, message };
+            localStorage.setItem('lastGenderRevealRSVP', JSON.stringify(lastRSVPData));
+
+            // Guardar directamente en la base de datos de Netlify Forms
+            try {
+                const formData = new FormData(form);
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+            } catch (err) {
+                console.log("Aviso: Formulario procesado localmente");
+            }
+
+            form.classList.add('hidden');
+            const successContainer = document.getElementById('rsvpSuccess');
+            const summaryText = document.getElementById('successSummary');
+
+            const giftItem = team.includes('Niño') ? 'un paquete de pañales 💙' : 'un paquete de toallitas húmedas 💖';
+
+            summaryText.innerHTML = `
+                <strong>¡Hola, ${name}!</strong><br>
+                Hemos registrado tu asistencia para <strong>${count} persona(s)</strong> apostando por <strong>${team}</strong>.<br><br>
+                Recuerda traer ${giftItem}. ¡Nos vemos pronto!
+            `;
+
+            successContainer.classList.remove('hidden');
+
+            // Gran lluvia de confeti celebrando la confirmación
+            triggerConfetti(['#8FAEC4', '#E8A5A5', '#D4AF37', '#8A9A86', '#FAF8F5']);
+            setTimeout(() => {
+                triggerConfetti(['#8FAEC4', '#E8A5A5', '#D4AF37']);
+            }, 300);
+        }
+
+        function resetRSVPForm() {
+            document.getElementById('rsvpSuccess').classList.add('hidden');
+            document.getElementById('rsvpForm').classList.remove('hidden');
+        }
+
+        function sendWhatsAppConfirmation() {
+            if (!lastRSVPData) return;
+
+            // Número de WhatsApp: 5610703749 (México código de país 52)
+            const phone = "525610703749";
+
+            // Se construye el texto y se aplica encodeURIComponent a TODO el mensaje para evitar que los emojis o tildes se conviertan en cuadros negros
+            const message = 
+                `¡Hola Karla e Hiram! 🎉 Confirmo mi asistencia para su Gender Reveal:\n\n` +
+                `• *Nombre:* ${lastRSVPData.name}\n` +
+                `• *Asistentes:* ${lastRSVPData.count}\n` +
+                `• *Mi Predicción:* ${lastRSVPData.team}\n` +
+                (lastRSVPData.message ? `• *Mensaje:* ${lastRSVPData.message}\n` : '') +
+                `\n¡Nos vemos el 15 de Noviembre! ✨`;
+
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

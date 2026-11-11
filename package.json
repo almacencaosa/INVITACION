@@ -1,0 +1,13 @@
+{
+  "name": "invitacion-gender-reveal",
+  "version": "1.0.0",
+  "description": "Invitación web interactiva para Gender Reveal en Netlify",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Listo para desplegar'"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
+
